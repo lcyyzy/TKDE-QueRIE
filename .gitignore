@@ -1,2 +1,6 @@
 # Pycharm files
 /.idea
+# origin file
+*.csv
+# virtual environment
+venv
