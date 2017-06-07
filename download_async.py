@@ -48,6 +48,7 @@ def main():
     names = []
     for one in a_name_s.items():
         names.append(one.html())
+    print(names)
     if toy:
         names = names[:5]
 

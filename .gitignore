@@ -1,6 +1,12 @@
 # Pycharm files
-/.idea
+/.idea/
 # origin file
 *.csv
 # virtual environment
 venv
+
+# python cached file
+/__pycache__/
+
+# python pickle
+*.pkl
