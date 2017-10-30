@@ -34,7 +34,7 @@ def download_one_table(name):
     for tr in g:
         lines.append(parse_tr(tr))
     df = pd.DataFrame(columns=columns, data=lines)
-    df.to_pickle("./data/" + name + '.pkl')
+    df.to_csv("./data/" + name + '.csv')
 
 
 def main():
@@ -43,11 +43,11 @@ def main():
         toy = False
     d = pQ(url="http://cas.sdss.org/dr7/en/help/browser/shortdescr.asp?n=Tables&t=U")
     a_name_s = d("table tr td.v a")
-    names = []
-    for one in a_name_s.items():
-        names.append(one.html())
-    if toy:
-        names = names[:5]
+    names = ['specobjall']
+    # for one in a_name_s.items():
+    #     names.append(one.html())
+    # if toy:
+    #     names = 'specobjall'
 
     for n in names:
         print(n)

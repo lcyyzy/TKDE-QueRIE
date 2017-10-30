@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-csv_path = "toyLogs.csv"
+csv_path = "toy.csv"
 #lc=pd.DataFrame(pd.read_csv('LoanStats3a.csv',header=1))
 logs = pd.DataFrame(pd.read_csv(csv_path, names=[
         'yy',
@@ -54,12 +54,14 @@ for i in range(logs.__len__()-2):
     if cnt == 500:
         flag_list.append(i+1)
         cnt = 0
+
+print("session finished")
 #print(flag_list)
-dfs = []
+#dfs = []
 #print(logs.iloc[0:3, 0])
-for i in range(flag_list.__len__()-1):
+#for i in range(flag_list.__len__()-1):
     #print(flag_list[i])
     #print(flag_list[i+1])
     #dfs.append(logs.head(flag_list[i+1]-flag_list[i]))
-    dfs.append(logs.iloc[flag_list[i]:flag_list[i+1], :])
-print(dfs)
+    #dfs.append(logs.iloc[flag_list[i]:flag_list[i+1], :])
+#print(dfs)

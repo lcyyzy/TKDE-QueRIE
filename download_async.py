@@ -4,6 +4,7 @@ import asyncio
 import aiohttp
 from pyquery import PyQuery as pQ
 import sys
+import MySQLdb
 
 
 def strip(df):
@@ -35,7 +36,8 @@ async def download_one_table(session, name):
         for tr in g:
             lines.append(parse_tr(tr))
         df = pd.DataFrame(columns=columns, data=lines)
-        df.to_pickle("./data/" + name + '.pkl')
+        df.to_sql(name, con=db, name=config.table_group_export, if_exists='replace', flavor='mysql', index=False)
+        df.to_csv("./data/" + name + '.csv')
         return name
 
 
@@ -45,12 +47,12 @@ def main():
         toy = False
     d = pQ(url="http://cas.sdss.org/dr7/en/help/browser/shortdescr.asp?n=Tables&t=U")
     a_name_s = d("table tr td.v a")
-    names = []
-    for one in a_name_s.items():
-        names.append(one.html())
-    print(names)
-    if toy:
-        names = names[:5]
+    names = ["specobjall"]
+    # for one in a_name_s.items():
+    #     names.append(one.html())
+    # print(names)
+    # if toy:
+    #     names = names[35:40]
 
     loop = asyncio.get_event_loop()
     async def start_fetch():
